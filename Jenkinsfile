@@ -14,17 +14,18 @@ pipeline {
                 sh 'mvn clean deploy'
             }
         }
-    }
+    
 
-     stage("SonarQube analysis") {
-     environment{
-     def scannerHome = tool 'priya-Sonar-scanner'
-     }
+        stage("SonarQube analysis") {
+        environment{
+        def scannerHome = tool 'priya-Sonar-scanner'
+        }
             steps {
               withSonarQubeEnv('priya-Sonarqube-server') {
                 sh "${scannerHome}/bin/sonar-scanner"              
               }
             }
-     }
+        }
+    }    
           
 }
